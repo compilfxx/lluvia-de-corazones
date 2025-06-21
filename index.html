@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagina de musica2</title>
+<div class="wallpaper"></div>
+    <div class="content">
+    </div>
+</head>
+<body>
+    <script src="VIC_PERSISTENTE "></script>
+    <script src="script/"></script>
+ <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  
+
+  <!-- Música romántica opcional (puedes cambiar el archivo) -->
+  <!-- <audio controls autoplay loop>
+    <source src="tu-cancion-romantica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio> -->
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 200);
+  </script>
+</body>
+</html>
+
+<audio id="backgroundMusic" loop>
+    <source src="mimusica.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</script>
+</body>
+</html>
