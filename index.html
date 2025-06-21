@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina de musica2</title>
+    <title>lluvia de corazones</title>
 <div class="wallpaper"></div>
     <div class="content">
     </div>
@@ -11,7 +11,111 @@
 <body>
     <script src="VIC_PERSISTENTE "></script>
     <script src="script/"></script>
- <link rel="stylesheet" href="./style.css">
+<script>
+    function setupMusic() {
+        const music = document.getElementById('backgroundMusic');
+        
+        const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+        const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+
+        if (isMusicPlaying) {
+            music.currentTime = parseFloat(musicCurrentTime);
+        }
+
+        music.addEventListener('play', () => {
+            localStorage.setItem('musicPlaying', 'true');
+        });
+
+        music.addEventListener('pause', () => {
+            localStorage.setItem('musicPlaying', 'false');
+        });
+
+        setInterval(() => {
+            localStorage.setItem('musicCurrentTime', music.currentTime);
+        }, 1000);
+
+        document.addEventListener('click', function startMusic() {
+            music.play().catch(error => {
+                console.log('Autoplay prevented', error);
+            });
+            document.removeEventListener('click', startMusic);
+        });
+    }
+
+        document.addEventListener('DOMContentLoaded', setupMusic);
+</script>
+ <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #ffc0cb, #ffe4e1);
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 15%;
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 2px 2px 8px #ff69b4;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        opacity: 1;
+      }
+      100% {
+        top: 110%;
+        opacity: 0;
+      }
+    }
+
+    audio {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
 </head>
 <body>
   
